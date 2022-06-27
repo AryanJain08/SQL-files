@@ -1,0 +1,47 @@
+SQL> DECLARE
+  2  v_line varchar2(40);
+  3  BEGIN
+  4  v_line:='Hello &name';
+  5  dbms_output.put_line(v_line);
+  6  end;
+  7  /
+Enter value for name: Raju
+old   4: v_line:='Hello &name';
+new   4: v_line:='Hello Raju';
+
+PL/SQL procedure successfully completed.
+
+SQL> insert into car values('Audi',101);
+
+1 row created.
+
+SQL> insert into car values('BMW',102);
+
+1 row created.
+
+SQL> select * from car;
+
+CARNAME                                       CARID
+---------------------------------------- ----------
+Audi                                            101
+BMW                                             102
+
+SQL> set serveroutput on;
+SQL> DECLARE
+  2  c_name car.carname%type;
+  3  CURSOR c1 is SELECT carname from car;
+  4  BEGIN
+  5  OPEN c1;
+  6  LOOP
+  7  FETCH c1 INTO c_name;
+  8  IF c1%NOTFOUND
+  9  THEN
+ 10  EXIT;
+ 11  END IF;
+ 12  dbms_output.put_line('Fetched:'||c_name);
+ 13  END LOOP;
+ 14  CLOSE c1;
+ 15  END;
+ 16  /
+Fetched:Audi
+Fetched:BMW

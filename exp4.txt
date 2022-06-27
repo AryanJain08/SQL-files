@@ -1,0 +1,205 @@
+SQL> SELECT CHR(67)||CHR(65)||CHR(84) "Dog" FROM DUAL;
+
+Dog                                                                             
+---                                                                             
+CAT                                                                             
+
+SQL> SELECT CHR(67)||CHR(65)||CHR(83) "Dog" FROM DUAL;
+
+Dog                                                                             
+---                                                                             
+CAS                                                                             
+
+SQL> SELECT CHR(67)||CHR(65)||CHR(83) FROM DUAL;
+
+CHR                                                                             
+---                                                                             
+CAS                                                                             
+
+SQL> SELECT CHR(67),CHR(65),CHR(84) FROM DUAL;
+
+C C C                                                                           
+- - -                                                                           
+C A T                                                                           
+
+SQL> SELECT CONCAT('ABHIJITH', 'HARI') from dual;
+
+CONCAT('ABHI                                                                    
+------------                                                                    
+ABHIJITHHARI                                                                    
+
+SQL> SELECT INITCAP('abhijith hari') from dual;
+
+INITCAP('ABHI                                                                   
+-------------                                                                   
+Abhijith Hari                                                                   
+
+SQL> select length('Sql Tutorial') as len from dual;
+
+       LEN                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> SELECT INSTR('Abhijith Hari', 'ri', 1) FROM dual;
+
+INSTR('ABHIJITHHARI','RI',1)                                                    
+----------------------------                                                    
+                          12                                                    
+
+SQL> SELECT INSTR('Abhijith Hari', 'i', 2) FROM dual;
+
+INSTR('ABHIJITHHARI','I',2)                                                     
+---------------------------                                                     
+                          4                                                     
+
+SQL> SELECT INSTR('Abhijith Hari', 'i', 1, 2) FROM dual;
+
+INSTR('ABHIJITHHARI','I',1,2)                                                   
+-----------------------------                                                   
+                            6                                                   
+
+SQL> SELECT UPPER('monday') from dual;
+
+UPPER(                                                                          
+------                                                                          
+MONDAY                                                                          
+
+SQL> SELECT LPAD('Message',9,'a') from dual;
+
+LPAD('MES                                                                       
+---------                                                                       
+aaMessage                                                                       
+
+SQL> SELECT LTRIM('datawarehouseing','data') trim1 from dual;
+
+TRIM1                                                                           
+------------                                                                    
+warehouseing                                                                    
+
+SQL> SELECT TRIM(' Abhijith ') trim1 from dual;
+
+TRIM1                                                                           
+--------                                                                        
+Abhijith                                                                        
+
+SQL> SELECT REPLACE('EDUCATION','EDU','VA')replace_exa from dual;
+
+REPLACE_                                                                        
+--------                                                                        
+VACATION                                                                        
+
+SQL> SELECT ABS(-20) from dual;
+
+  ABS(-20)                                                                      
+----------                                                                      
+        20                                                                      
+
+SQL> SELECT ACOS(.28) from dual;
+
+ ACOS(.28)                                                                      
+----------                                                                      
+1.28700222                                                                      
+
+SQL> SELECT ASIN(.6) from dual;
+
+  ASIN(.6)                                                                      
+----------                                                                      
+.643501109                                                                      
+
+SQL> SELECT ATAN(.6) from dual;
+
+  ATAN(.6)                                                                      
+----------                                                                      
+  .5404195                                                                      
+
+SQL> SELECT CEIL(264.12) FROM DUAL;
+
+CEIL(264.12)                                                                    
+------------                                                                    
+         265                                                                    
+
+SQL> SELECT FLOOR(264.92) FROM DUAL;
+
+FLOOR(264.92)                                                                   
+-------------                                                                   
+          264                                                                   
+
+SQL> SELECT MOD(27,5) FROM DUAL;
+
+ MOD(27,5)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> SELECT POWER(2,3) FROM DUAL;
+
+POWER(2,3)                                                                      
+----------                                                                      
+         8                                                                      
+
+SQL> SELECT SYSDATE, ADD_MONTHS(SYSDATE,2) FROM DUAL;
+
+SYSDATE   ADD_MONTH                                                             
+--------- ---------                                                             
+16-FEB-22 16-APR-22                                                             
+
+SQL> SELECT SYSDATE, EXTRACT(MONTH FROM SYSDATE) FROM DUAL;
+
+SYSDATE   EXTRACT(MONTHFROMSYSDATE)                                             
+--------- -------------------------                                             
+16-FEB-22                         2                                             
+
+SQL> SELECT SYSDATE, LAST_DAY(SYSDATE) FROM DUAL;
+
+SYSDATE   LAST_DAY(                                                             
+--------- ---------                                                             
+16-FEB-22 28-FEB-22                                                             
+
+SQL> SELECT NEXT_DAY('16-Feb-22','WED') FROM DUAL;
+
+NEXT_DAY(                                                                       
+---------                                                                       
+23-FEB-22                                                                       
+
+SQL> SELECT SYSDATE, ROUND(SYSDATE,'MM') FROM DUAL;
+
+SYSDATE   ROUND(SYS                                                             
+--------- ---------                                                             
+16-FEB-22 01-MAR-22                                                             
+
+SQL> SELECT SYSDATE, ROUND(SYSDATE,'DD') FROM DUAL;
+
+SYSDATE   ROUND(SYS                                                             
+--------- ---------                                                             
+16-FEB-22 16-FEB-22                                                             
+
+SQL> SELECT SYSDATE, ROUND(SYSDATE,'YY') FROM DUAL;
+
+SYSDATE   ROUND(SYS                                                             
+--------- ---------                                                             
+16-FEB-22 01-JAN-22                                                             
+
+SQL> SELECT SYSDATE, TRUNC(SYSDATE,'MM'), TRUNC(SYSDATE,'YYYY') FROM DUAL;
+
+SYSDATE   TRUNC(SYS TRUNC(SYS                                                   
+--------- --------- ---------                                                   
+16-FEB-22 01-FEB-22 01-JAN-22                                                   
+
+SQL> SELECT MONTHS_BETWEEN('16-Feb-22','16-Mar-22')FROM DUAL;
+
+MONTHS_BETWEEN('16-FEB-22','16-MAR-22')                                         
+---------------------------------------                                         
+                                     -1                                         
+
+SQL> SELECT ROUND(32.757,2) from dual;
+
+ROUND(32.757,2)                                                                 
+---------------                                                                 
+          32.76                                                                 
+
+SQL> SELECT TRUNC(32.757,2) from dual;
+
+TRUNC(32.757,2)                                                                 
+---------------                                                                 
+          32.75                                                                 
+
+SQL> spool off;

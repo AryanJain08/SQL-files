@@ -1,0 +1,64 @@
+SQL> create table employee(empno number,empname varchar2(55),dob date,salary number,designation varchar2(20));
+
+Table created.
+
+SQL> insert into employee values(100,'Jack','4-May-2021',5000,'Manager');
+
+1 row created.
+
+SQL> insert into employee values(101,'Jill','4-July-2021',2000,'Clerk');
+
+1 row created.
+
+SQL> select * from employee;
+
+     EMPNO EMPNAME                                                 DOB          
+---------- ------------------------------------------------------- ---------    
+    SALARY DESIGNATION                                                          
+---------- --------------------                                                 
+       100 Jack                                                    04-MAY-21    
+      5000 Manager                                                              
+                                                                                
+       101 Jill                                                    04-JUL-21    
+      2000 Clerk                                                                
+                                                                                
+
+SQL> select empname,salary from employee;
+
+EMPNAME                                                     SALARY              
+------------------------------------------------------- ----------              
+Jack                                                          5000              
+Jill                                                          2000              
+
+SQL> update employee set salary=salary+1000;
+
+2 rows updated.
+
+SQL> select * from employee;
+
+     EMPNO EMPNAME                                                 DOB          
+---------- ------------------------------------------------------- ---------    
+    SALARY DESIGNATION                                                          
+---------- --------------------                                                 
+       100 Jack                                                    04-MAY-21    
+      6000 Manager                                                              
+                                                                                
+       101 Jill                                                    04-JUL-21    
+      3000 Clerk                                                                
+                                                                                
+
+SQL> delete from employee where empno=100;
+
+1 row deleted.
+
+SQL> select * from employee;
+
+     EMPNO EMPNAME                                                 DOB          
+---------- ------------------------------------------------------- ---------    
+    SALARY DESIGNATION                                                          
+---------- --------------------                                                 
+       101 Jill                                                    04-JUL-21    
+      3000 Clerk                                                                
+                                                                                
+
+SQL> spool off;

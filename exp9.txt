@@ -1,0 +1,116 @@
+SQL> create table student(studentid number,name varchar2(20));
+create table student(studentid number,name varchar2(20))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> drop table student;
+
+Table dropped.
+
+SQL> create table student(studentid number,name varchar2(20));
+
+Table created.
+
+SQL> create table marks(studentid number,marks number);
+
+Table created.
+
+SQL> insert into student values(101,'Abhay');
+
+1 row created.
+
+SQL> insert into student values(102,'Aryan');
+
+1 row created.
+
+SQL> insert into student values(103,'Raju');
+
+1 row created.
+
+SQL> insert into student values(104,'Shyamu');
+
+1 row created.
+
+SQL> select * from student;
+
+ STUDENTID NAME                                                                 
+---------- --------------------                                                 
+       101 Abhay                                                                
+       102 Aryan                                                                
+       103 Raju                                                                 
+       104 Shyamu                                                               
+
+SQL> insert into marks values(101,95);
+
+1 row created.
+
+SQL> insert into marks values(102,80);
+
+1 row created.
+
+SQL> insert into marks values(103,74);
+
+1 row created.
+
+SQL> insert into marks values(104,81);
+
+1 row created.
+
+SQL> select * from marks;
+
+ STUDENTID      MARKS                                                           
+---------- ----------                                                           
+       101         95                                                           
+       102         80                                                           
+       103         74                                                           
+       104         81                                                           
+
+SQL> select a.studentid,a.name,b.marks from student a,marks b where a.studentid=b.studentid and b.marks>(select marks from marks where studentid=102);
+
+ STUDENTID NAME                      MARKS                                      
+---------- -------------------- ----------                                      
+       101 Abhay                        95                                      
+       104 Shyamu                       81                                      
+
+SQL> create table newmarks(studentid number,marks number);
+
+Table created.
+
+SQL> insert into newmarks (select * from marks where marks>90);
+
+1 row created.
+
+SQL> select * from newmarks;
+
+ STUDENTID      MARKS                                                           
+---------- ----------                                                           
+       101         95                                                           
+
+SQL> update marks set marks=100 where studentid>(select studentid from student where studentid=101);
+
+3 rows updated.
+
+SQL> select * from marks;
+
+ STUDENTID      MARKS                                                           
+---------- ----------                                                           
+       101         95                                                           
+       102        100                                                           
+       103        100                                                           
+       104        100                                                           
+
+SQL> delete from marks where marks<(select marks from marks where studentid=102);
+
+1 row deleted.
+
+SQL> select * from marks;
+
+ STUDENTID      MARKS                                                           
+---------- ----------                                                           
+       102        100                                                           
+       103        100                                                           
+       104        100                                                           
+
+SQL> spool off;

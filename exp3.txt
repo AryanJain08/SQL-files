@@ -1,0 +1,156 @@
+SQL> create table customers(customerid varchar2(10), customername varchar(10),DOA varchar(10));
+
+
+SQL> insert into customers values('101','John','19-01-2022');
+
+1 row created.
+
+SQL> grant select on customer to public;
+
+Grant succeeded.
+
+SQL> revoke select on customer from public;
+
+Revoke succeeded.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select *from customers;
+
+CUSTOMERID CUSTOMERNA DOA                                                       
+---------- ---------- ----------                                                
+101        John       19-01-2022                                                
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select *from customers;
+
+CUSTOMERID CUSTOMERNA DOA                                                       
+---------- ---------- ----------                                                
+101        John       19-01-2022                                                
+
+SQL> update customers set customerid='102' where customername='John';
+
+1 row updated.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select *from customers;
+
+CUSTOMERID CUSTOMERNA DOA                                                       
+---------- ---------- ----------                                                
+101        John       19-01-2022                                                
+
+SQL> savepoint sp1;
+
+Savepoint created.
+
+SQL> drop table customers;
+
+Table dropped.
+
+
+SQL> savepoint sp2;
+
+Savepoint created.
+
+SQL> select * from emp;
+select * from emp
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from emp1;
+
+EMPID                                                                           
+----------                                                                      
+EMPNAME                                                                         
+--------------------------------------------------------------------------------
+ EMPSALARY                                                                      
+----------                                                                      
+101                                                                             
+Rajesh                                                                          
+     50000                                                                      
+                                                                                
+102                                                                             
+Mukesh                                                                          
+     70000                                                                      
+
+EMPID                                                                           
+----------                                                                      
+EMPNAME                                                                         
+--------------------------------------------------------------------------------
+ EMPSALARY                                                                      
+----------                                                                      
+                                                                                
+103                                                                             
+Jitesh                                                                          
+     30000                                                                      
+                                                                                
+104                                                                             
+Rita                                                                            
+
+EMPID                                                                           
+----------                                                                      
+EMPNAME                                                                         
+--------------------------------------------------------------------------------
+ EMPSALARY                                                                      
+----------                                                                      
+     90000                                                                      
+                                                                                
+
+SQL> delete from emp1 where empid='104';
+
+1 row deleted.
+
+SQL> rollback to sp2;
+
+Rollback complete.
+
+SQL> select * from emp1;
+
+EMPID                                                                           
+----------                                                                      
+EMPNAME                                                                         
+--------------------------------------------------------------------------------
+ EMPSALARY                                                                      
+----------                                                                      
+101                                                                             
+Rajesh                                                                          
+     50000                                                                      
+                                                                                
+102                                                                             
+Mukesh                                                                          
+     70000                                                                      
+
+EMPID                                                                           
+----------                                                                      
+EMPNAME                                                                         
+--------------------------------------------------------------------------------
+ EMPSALARY                                                                      
+----------                                                                      
+                                                                                
+103                                                                             
+Jitesh                                                                          
+     30000                                                                      
+                                                                                
+104                                                                             
+Rita                                                                            
+
+EMPID                                                                           
+----------                                                                      
+EMPNAME                                                                         
+--------------------------------------------------------------------------------
+ EMPSALARY                                                                      
+----------                                                                      
+     90000                                                                      
+                                                                                
+
+SQL> spool off

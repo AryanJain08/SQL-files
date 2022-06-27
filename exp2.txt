@@ -1,0 +1,142 @@
+SQL> create table emp(empid varchar2(10),empname varchar2(10));
+create table emp(empid varchar2(10),empname varchar2(10))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> drop table emp;
+
+Table dropped.
+
+SQL> create table emp(empid varchar2(10),empname varchar2(10));
+
+Table created.
+
+SQL> insert into emp values('101','Rajesh');
+
+1 row created.
+
+SQL> alter table emp add empsalary number;
+
+Table altered.
+
+SQL> select * from emp;
+
+EMPID      EMPNAME     EMPSALARY                                                
+---------- ---------- ----------                                                
+101        Rajesh                                                               
+
+
+                                             
+
+
+
+SQL> select *from emp;
+
+EMPID      EMPNAME     EMPSALARY                                                
+---------- ---------- ----------                                                
+101        Rajesh                                                               
+
+SQL> update emp set empsalary=50000 where empname='Rajesh';
+
+1 row updated.
+
+SQL> select *from emp;
+
+EMPID      EMPNAME     EMPSALARY                                                
+---------- ---------- ----------                                                
+101        Rajesh          50000                                                
+
+
+
+
+SQL> insert into emp values('102','Mukesh',70000);
+
+1 row created.
+
+SQL> insert into emp values('103','Jitesh',30000);
+
+1 row created.
+
+SQL> insert into emp values('104','Rita',90000);
+
+1 row created.
+
+SQL> select * from emp;
+
+EMPID      EMPNAME     EMPSALARY                                                
+---------- ---------- ----------                                                
+101        Rajesh          50000                                                
+102        Mukesh          70000                                                
+103        Jitesh          30000                                                
+104        Rita            90000                                                
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                              VARCHAR2(10)
+ EMPNAME                                            VARCHAR2(10)
+ EMPSALARY                                          NUMBER
+
+SQL> alter table emp modify empname varchar2(100);
+
+Table altered.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                              VARCHAR2(10)
+ EMPNAME                                            VARCHAR2(100)
+ EMPSALARY                                          NUMBER
+
+SQL> alter table emp rename to emp1;
+
+Table altered.
+
+SQL> desc emp1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                              VARCHAR2(10)
+ EMPNAME                                            VARCHAR2(100)
+ EMPSALARY                                          NUMBER
+
+SQL> create table student(studentID number primary key, sname varchar2(30) not null,department char(5), sem number,dob DATE,email varchar(20) unique,college varchar(20) default 'mec');
+
+Table created.
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER
+ SNAME                                     NOT NULL VARCHAR2(30)
+ DEPARTMENT                                         CHAR(5)
+ SEM                                                NUMBER
+ DOB                                                DATE
+ EMAIL                                              VARCHAR2(20)
+ COLLEGE                                            VARCHAR2(20)
+
+
+
+
+SQL> create table exam(examID number,studentID number references student(studentID),department char(5) not null,mark1 number check (mark1<=100 and mark1>=0), mark2 number check(mark2<=100 and mark2>=0), total number,average number, grade char(1));
+
+Table created.
+
+
+SQL> alter table exam ADD CONSTRAINT pr PRIMARY KEY(examID);
+
+Table altered.
+
+SQL> create table student_details(reg number, stuname varchar2(10), DOB date, primary key(reg,stuname));
+
+Table created.
+
+SQL> desc student_details;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REG                                       NOT NULL NUMBER
+ STUNAME                                   NOT NULL VARCHAR2(10)
+ DOB                                                DATE
+
+SQL> spool off;

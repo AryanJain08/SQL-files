@@ -1,0 +1,56 @@
+SQL> create table primary(id number,varchar2(20));
+create table primary(id number,varchar2(20))
+                               *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> create table primary(id number,name varchar2(20));
+
+Table created.
+
+SQL> create table second(id number,name varchar2(20));
+
+Table created.
+
+SQL> select * from primary union select * from second;
+
+no rows selected
+
+SQL> insert into primary values(1,'Raju');
+
+1 row created.
+
+SQL> insert into primary values(2,'Shaji');
+
+1 row created.
+
+SQL> insert into second values(2,'Shaji');
+
+1 row created.
+
+SQL> insert into second values(3,'Shyam');
+
+1 row created.
+
+SQL> select * from primary union select * from second;
+
+        ID NAME                                                                 
+---------- --------------------                                                 
+         1 Raju                                                                 
+         2 Shaji                                                                
+         3 Shyam                                                                
+
+SQL> select * from primary intersect select * from second;
+
+        ID NAME                                                                 
+---------- --------------------                                                 
+         2 Shaji                                                                
+
+SQL> select * from primary minus select * from second;
+
+        ID NAME                                                                 
+---------- --------------------                                                 
+         1 Raju                                                                 
+
+SQL> spool off;

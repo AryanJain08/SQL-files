@@ -1,0 +1,106 @@
+SQL> create table Employee(Employee_Name varchar2(10),Employee_No number(8),Dept_Name varchar2(10),Dept_No Number(5),Date_Of_Join Date);
+
+Table created.
+
+SQL> desc Employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_NAME                                      VARCHAR2(10)
+ EMPLOYEE_NO                                        NUMBER(8)
+ DEPT_NAME                                          VARCHAR2(10)
+ DEPT_NO                                            NUMBER(5)
+ DATE_OF_JOIN                                       DATE
+
+SQL> create View Empview as select Employee_Name,Employee_No,Dept_Name,Dept_No,Date_Of_Join From Employee;
+
+View created.
+
+SQL> desc Empview;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_NAME                                      VARCHAR2(10)
+ EMPLOYEE_NO                                        NUMBER(8)
+ DEPT_NAME                                          VARCHAR2(10)
+ DEPT_NO                                            NUMBER(5)
+ DATE_OF_JOIN                                       DATE
+
+SQL> select * from Empview;
+
+no rows selected
+
+SQL> insert into Empview Values('Sri',120,'Cse',67,'16-Nov-1981');
+
+1 row created.
+
+SQL> select * from Empview;
+
+EMPLOYEE_N EMPLOYEE_NO DEPT_NAME     DEPT_NO DATE_OF_J                          
+---------- ----------- ---------- ---------- ---------                          
+Sri                120 Cse                67 16-NOV-81                          
+
+SQL> insert into Empview Values('Ravi',124,'Ece',89,'15-Jun-2005');
+
+1 row created.
+
+SQL> insert into Empview Values('Vijay',345,'Cse',21,'21-Jun-2006');
+
+1 row created.
+
+SQL> insert into Empview Values('Raj',98,'It',22,'30-Sep-2006');
+
+1 row created.
+
+SQL> insert into Empview Values('Giri',100,'Cse',67,'14-Nov-1981');
+
+1 row created.
+
+SQL> select * from Empview;
+
+EMPLOYEE_N EMPLOYEE_NO DEPT_NAME     DEPT_NO DATE_OF_J                          
+---------- ----------- ---------- ---------- ---------                          
+Sri                120 Cse                67 16-NOV-81                          
+Ravi               124 Ece                89 15-JUN-05                          
+Vijay              345 Cse                21 21-JUN-06                          
+Raj                 98 It                 22 30-SEP-06                          
+Giri               100 Cse                67 14-NOV-81                          
+
+SQL> delete from Empview where Employee_Name='Sri;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> delete from Empview where Employee_Name='Sri';
+
+1 row deleted.
+
+SQL> select * from Empview;
+
+EMPLOYEE_N EMPLOYEE_NO DEPT_NAME     DEPT_NO DATE_OF_J                          
+---------- ----------- ---------- ---------- ---------                          
+Ravi               124 Ece                89 15-JUN-05                          
+Vijay              345 Cse                21 21-JUN-06                          
+Raj                 98 It                 22 30-SEP-06                          
+Giri               100 Cse                67 14-NOV-81                          
+
+SQL> update Empview set Employee_Name='Kavi' where Employee_Name='Ravi';
+
+1 row updated.
+
+SQL> select * from Empview;
+
+EMPLOYEE_N EMPLOYEE_NO DEPT_NAME     DEPT_NO DATE_OF_J                          
+---------- ----------- ---------- ---------- ---------                          
+Kavi               124 Ece                89 15-JUN-05                          
+Vijay              345 Cse                21 21-JUN-06                          
+Raj                 98 It                 22 30-SEP-06                          
+Giri               100 Cse                67 14-NOV-81                          
+
+SQL> drop view Empview;
+
+View dropped.
+
+SQL> rollback;
+
+Rollback complete.
+
+

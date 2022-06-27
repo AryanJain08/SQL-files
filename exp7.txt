@@ -1,0 +1,164 @@
+SQL> create table orders(O_Id number(5),Orderno number(5),P_Id number(3));
+
+Table created.
+
+SQL> desc orders;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ O_ID                                               NUMBER(5)
+ ORDERNO                                            NUMBER(5)
+ P_ID                                               NUMBER(3)
+
+SQL> insert into orders values(&O_Id,&Orderno,&P_Id);
+Enter value for o_id: 1
+Enter value for orderno: 77895
+Enter value for p_id: 3
+old   1: insert into orders values(&O_Id,&Orderno,&P_Id)
+new   1: insert into orders values(1,77895,3)
+
+1 row created.
+
+SQL> insert into orders values(&O_Id,&Orderno,&P_Id);
+Enter value for o_id: 2
+Enter value for orderno: 44678
+Enter value for p_id: 3
+old   1: insert into orders values(&O_Id,&Orderno,&P_Id)
+new   1: insert into orders values(2,44678,3)
+
+1 row created.
+
+SQL> insert into orders values(&O_Id,&Orderno,&P_Id);
+Enter value for o_id: 3
+Enter value for orderno: 22456
+Enter value for p_id: 1
+old   1: insert into orders values(&O_Id,&Orderno,&P_Id)
+new   1: insert into orders values(3,22456,1)
+
+1 row created.
+
+SQL> insert into orders values(&O_Id,&Orderno,&P_Id);
+Enter value for o_id: 4
+Enter value for orderno: 24562
+Enter value for p_id: 1
+old   1: insert into orders values(&O_Id,&Orderno,&P_Id)
+new   1: insert into orders values(4,24562,1)
+
+1 row created.
+
+SQL> insert into orders values(&O_Id,&Orderno,&P_Id);
+Enter value for o_id: 5
+Enter value for orderno: 34764
+Enter value for p_id: 15
+old   1: insert into orders values(&O_Id,&Orderno,&P_Id)
+new   1: insert into orders values(5,34764,15)
+
+1 row created.
+
+SQL> select * from orders;
+
+      O_ID    ORDERNO       P_ID                                                
+---------- ---------- ----------                                                
+         1      77895          3                                                
+         2      44678          3                                                
+         3      22456          1                                                
+         4      24562          1                                                
+         5      34764         15                                                
+
+SQL> create table persons(p_id number(5), Lastname varchar2(10),Firstname varchar2(15),Address varchar2(20),city varchar2(10));
+
+Table created.
+
+SQL> insert into persons values(&p_Id,'&Lastname','&firstname','&Address','&city');
+Enter value for p_id: 1
+Enter value for lastname: Singh
+Enter value for firstname: Gurpreet
+Enter value for address: Timoteivn 10
+Enter value for city: sadnes
+old   1: insert into persons values(&p_Id,'&Lastname','&firstname','&Address','&city')
+new   1: insert into persons values(1,'Singh','Gurpreet','Timoteivn 10','sadnes')
+
+1 row created.
+
+SQL> insert into persons values(&p_Id,'&Lastname','&firstname','&Address','&city');
+Enter value for p_id: 2
+Enter value for lastname: Iyer
+Enter value for firstname: Rakesh
+Enter value for address: Borgn 23
+Enter value for city: Sandnes
+old   1: insert into persons values(&p_Id,'&Lastname','&firstname','&Address','&city')
+new   1: insert into persons values(2,'Iyer','Rakesh','Borgn 23','Sandnes')
+
+1 row created.
+
+SQL> insert into persons values(&p_Id,'&Lastname','&firstname','&Address','&city');
+Enter value for p_id: 3
+Enter value for lastname: Samuel
+Enter value for firstname: Victor
+Enter value for address: Storgt 20
+Enter value for city: Stavenger
+old   1: insert into persons values(&p_Id,'&Lastname','&firstname','&Address','&city')
+new   1: insert into persons values(3,'Samuel','Victor','Storgt 20','Stavenger')
+
+1 row created.
+
+SQL> select * from persons;
+
+      P_ID LASTNAME   FIRSTNAME       ADDRESS              CITY                 
+---------- ---------- --------------- -------------------- ----------           
+         1 Singh      Gurpreet        Timoteivn 10         sadnes               
+         2 Iyer       Rakesh          Borgn 23             Sandnes              
+         3 Samuel     Victor          Storgt 20            Stavenger            
+
+SQL> select persons.Lastname,persons.Firstname,orders.Orderno from persons left join orders on persons.p_Id=orders.p_Id order by persons.Lastname;
+
+LASTNAME   FIRSTNAME          ORDERNO                                           
+---------- --------------- ----------                                           
+Iyer       Rakesh                                                               
+Samuel     Victor               77895                                           
+Samuel     Victor               44678                                           
+Singh      Gurpreet             24562                                           
+Singh      Gurpreet             22456                                           
+
+SQL> select persons.Lastname,persons.Firstname,orders.Orderno from persons full outer join orders on persons.p_Id=orders.p_Id order by persons.Lastname;
+
+LASTNAME   FIRSTNAME          ORDERNO                                           
+---------- --------------- ----------                                           
+Iyer       Rakesh                                                               
+Samuel     Victor               77895                                           
+Samuel     Victor               44678                                           
+Singh      Gurpreet             24562                                           
+Singh      Gurpreet             22456                                           
+                                34764                                           
+
+6 rows selected.
+
+SQL> select persons.Lastname,persons.Firstname,orders.Orderno from persons right join orders on persons.p_Id=orders.p_Id order by persons.Lastname;
+
+LASTNAME   FIRSTNAME          ORDERNO                                           
+---------- --------------- ----------                                           
+Samuel     Victor               77895                                           
+Samuel     Victor               44678                                           
+Singh      Gurpreet             24562                                           
+Singh      Gurpreet             22456                                           
+                                34764                                           
+
+SQL> select persons.Lastname,persons.Firstname,orders.Orderno from persons right outer join orders on persons.p_Id=orders.p_Id order by persons.Lastname;
+
+LASTNAME   FIRSTNAME          ORDERNO                                           
+---------- --------------- ----------                                           
+Samuel     Victor               77895                                           
+Samuel     Victor               44678                                           
+Singh      Gurpreet             24562                                           
+Singh      Gurpreet             22456                                           
+                                34764                                           
+
+SQL> select persons.Lastname,persons.Firstname,orders.Orderno from persons inner join orders on persons.p_Id=orders.p_Id order by persons.Lastname;
+
+LASTNAME   FIRSTNAME          ORDERNO                                           
+---------- --------------- ----------                                           
+Samuel     Victor               77895                                           
+Samuel     Victor               44678                                           
+Singh      Gurpreet             22456                                           
+Singh      Gurpreet             24562                                           
+
+SQL> spool off
